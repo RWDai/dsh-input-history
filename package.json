@@ -1,0 +1,45 @@
+{
+  "name": "dsh-input-history",
+  "version": "0.1.0",
+  "private": false,
+  "description": "DSH 插件：在输入框按 ↑/↓ 像终端一样翻出本会话发过的消息（↑ 取上一条，↓ 回退）",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "node test/host.smoke.mjs && node test/client.smoke.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "input",
+    "history",
+    "composer",
+    "keyboard"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}
