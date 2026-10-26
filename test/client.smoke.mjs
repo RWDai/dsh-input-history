@@ -410,11 +410,19 @@ keydownListeners[0](ev);
 assert.ok(ev.defaulted, '草稿非空但光标在首行行首：↑ 进历史');
 assert.equal(api.state.savedDraft, '我正在打一半的话', '进入浏览态前暂存草稿');
 
-// 翻到最旧（4 条历史：0..3），再 ↓ 越过边界 → 还原暂存草稿。
+// 翻到最旧（4 条历史：0..3），再 ↑ 停住，再 ↓ 越过边界 → 还原暂存草稿。
 ev = press('ArrowUp', composer); keydownListeners[0](ev);
 ev = press('ArrowUp', composer); keydownListeners[0](ev);
-assert.equal(api.state.cursor, 2);
-assert.equal(calls.at(-1).text, '补充一句', '最旧一条是补充一句');
+ev = press('ArrowUp', composer); keydownListeners[0](ev);
+assert.equal(api.state.cursor, 3);
+assert.equal(calls.at(-1).text, '第一问', '最旧一条是第一次发的第一问');
+// 最旧一条再按 ↑：停住，绝不能当成越界去还原草稿。
+const beforeOldest = calls.length;
+ev = press('ArrowUp', composer); keydownListeners[0](ev);
+assert.equal(api.state.cursor, 3, '↑ 翻到头就停住');
+assert.equal(calls.length, beforeOldest, '翻到头不该写草稿');
+assert.ok(!ev.defaulted, '翻到头不吞键（让光标自己动）');
+ev = press('ArrowDown', composer); keydownListeners[0](ev);
 ev = press('ArrowDown', composer); keydownListeners[0](ev);
 ev = press('ArrowDown', composer); keydownListeners[0](ev);
 ev = press('ArrowDown', composer); keydownListeners[0](ev);
