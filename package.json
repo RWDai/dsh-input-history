@@ -1,8 +1,8 @@
 {
   "name": "dsh-input-history",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
-  "description": "DSH 插件：在输入框按 ↑/↓ 像终端一样翻出本会话发过的消息（↑ 取上一条，↓ 回退）",
+  "description": "DSH 插件：在对话输入框按 ↑/↓ 像终端一样翻出本会话发过的消息（无界面）",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
