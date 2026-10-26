@@ -20,7 +20,7 @@ github:RWDai/dsh-input-history
 
 ```bash
 curl -s http://127.0.0.1:3080/plugin/dsh-input-history/health
-# {"ok":true,"plugin":"dsh-input-history","version":"0.1.0","clientSeenAt":null}
+# {"ok":true,"plugin":"dsh-input-history","version":"0.1.1","clientSeenAt":null}
 ```
 
 ## 键位与边界
